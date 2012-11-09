@@ -8,7 +8,7 @@ end
 
 EM::defer do
   loop do
-    CometIO.push :chat, {:name => 'clock', :message => Time.now.to_s}
+    CometIO.push :chat, :name => 'clock', :message => Time.now.to_s
     sleep 60
   end
 end
