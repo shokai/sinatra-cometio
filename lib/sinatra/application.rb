@@ -2,6 +2,12 @@ module Sinatra
 
   class Application
 
+    helpers do
+      def cometio_js
+        "#{env['rack.url_scheme']}://#{env['HTTP_HOST']}#{env['SCRIPT_NAME']}/cometio/cometio.js"
+      end
+    end
+
     get '/cometio/cometio.js' do
       content_type 'application/javascript'
       @js ||= (
