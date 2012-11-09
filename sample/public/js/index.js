@@ -1,4 +1,4 @@
-var io = new CometIO(app_root+'/cometio/io');
+var io = new CometIO();
 
 io.on("chat", function(data){
   var m = $('<li>').text(data.name + ' : ' +data.message);
