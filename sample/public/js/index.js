@@ -1,4 +1,4 @@
-var io = new CometIO();
+var io = new CometIO().connect();
 
 io.on("chat", function(data){
   var m = $('<li>').text(data.name + ' : ' +data.message);
@@ -6,7 +6,6 @@ io.on("chat", function(data){
 });
 
 $(function(){
-  io.connect();
   $('#chat #btn_send').click(post);
   $('#chat #message').keydown(function(e){
     if(e.keyCode == 13) post();
