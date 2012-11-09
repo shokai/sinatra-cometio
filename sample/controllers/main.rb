@@ -1,10 +1,10 @@
-Sinatra::CometIO.on :chat do |data|
+CometIO.on :chat do |data|
   self.push :chat, data
 end
 
 EM::defer do
   loop do
-    Sinatra::CometIO.push :chat, {:name => 'clock', :message => Time.now.to_s}
+    CometIO.push :chat, {:name => 'clock', :message => Time.now.to_s}
     sleep 60
   end
 end
