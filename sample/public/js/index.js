@@ -5,14 +5,6 @@ io.on("chat", function(data){
   $('#chat #timeline').prepend(m);
 });
 
-var post = function(){
-  var name = $('#chat #name').val();
-  var message = $('#chat #message').val();
-  if(message.length < 1) return;
-  io.push("chat", {name: name, message: message});
-  $('#chat #message').val('');
-};
-
 $(function(){
   io.connect();
   $('#chat #btn_send').click(post);
@@ -21,3 +13,10 @@ $(function(){
   });
 });
 
+var post = function(){
+  var name = $('#chat #name').val();
+  var message = $('#chat #message').val();
+  if(message.length < 1) return;
+  io.push("chat", {name: name, message: message});
+  $('#chat #message').val('');
+};
