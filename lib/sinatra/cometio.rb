@@ -16,7 +16,8 @@ module Sinatra
   
   class Application
 
-    get '/cometio.js' do
+    get '/cometio/cometio.js' do
+      content_type 'application/javascript'
       @js ||= (
                js = nil
                File.open(File.expand_path '../js/cometio.js', File.dirname(__FILE__)) do |f|

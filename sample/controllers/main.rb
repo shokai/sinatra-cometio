@@ -1,9 +1,12 @@
 Sinatra::CometIO.on :chat do |data|
-  Sinatra::CometIO.push :chat, data
+  self.push :chat, data
 end
 
-before '/*.json' do
-  content_type 'application/json'
+EM::defer do
+  loop do
+    Sinatra::CometIO.push :chat, {:name => 'clock', :message => Time.now.to_s}
+    sleep 60
+  end
 end
 
 get '/' do
