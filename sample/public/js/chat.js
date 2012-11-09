@@ -1,17 +1,14 @@
-
-var Chat = function(url){
+var CometIO = function(url){
   this.url = url;
   var self = this;
 
-  this.post = function(data){
-    $.post(self.url, {cometio : {type : 'chat', data : data}});
+  this.push = function(type, data){
+    $.post(self.url, {type : type, data : data});
   };
 
-  this.start = function(){
+  this.connect = function(){
     self.get();
   };
-
-  this.on_get = null;
 
   this.get = function(){
     $.ajax(
@@ -19,7 +16,7 @@ var Chat = function(url){
         url : self.url,
         success : function(data){
           if(data){
-            if(self.on_get && typeof self.on_get == 'function') self.on_get(data);
+            self.emit(data.type, data.data);
           }
           self.get();
         },
@@ -28,11 +25,25 @@ var Chat = function(url){
         },
         complete : function(e){
         },
-        type : 'GET',
-        dataType : 'json',
+        type : "GET",
+        dataType : "json",
         timeout : 60000
       }
     );
   };
-  
+
+  this.events = new Array();
+  this.on = function(type, listener){
+    if(typeof listener === "function"){
+      self.events.push({type: type, listener: listener});
+    }
+  };
+
+  this.emit = function(type, data){
+    for(var i = 0; i < self.events.length; i++){
+      var e = self.events[i];
+      if(e.type == type) e.listener(data);
+    }
+  };
+
 };

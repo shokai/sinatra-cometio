@@ -38,10 +38,11 @@ module Sinatra
     end
 
     post '/cometio/io' do
-      msg = params[:cometio]
+      type = params[:type]
+      data = params[:data]
       begin
-        if msg['type'].size > 0
-          Sinatra::CometIO.emit msg['type'], msg['data']
+        if type.size > 0
+          Sinatra::CometIO.emit type, data
         end
       rescue => e
         STDERR.puts e
