@@ -34,7 +34,7 @@ module Sinatra
         end
         puts "<#{sid}> comet"
         
-        EM::add_timer 60 do
+        EM::add_timer 10 do
           s.close
           CometIO.channel.unsubscribe sid
         end
