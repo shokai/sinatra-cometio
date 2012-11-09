@@ -51,7 +51,7 @@ module Sinatra
       rescue => e
         STDERR.puts e
       end
-      'received'
+      {:type => type, :data => data}.to_json
     end
     
   end
