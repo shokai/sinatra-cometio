@@ -16,6 +16,16 @@ module Sinatra
   
   class Application
 
+    get '/cometio.js' do
+      @js ||= (
+               js = nil
+               File.open(File.expand_path '../js/cometio.js', File.dirname(__FILE__)) do |f|
+                 js = f.read
+               end
+               js
+               )
+    end
+
     get '/cometio/io' do
       stream :keep_open do |s|
         sid = Sinatra::CometIO.channel.subscribe do |msg|
