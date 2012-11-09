@@ -44,13 +44,7 @@ module Sinatra
     post '/cometio/io' do
       type = params[:type]
       data = params[:data]
-      begin
-        if type.size > 0
-          CometIO.emit type, data
-        end
-      rescue => e
-        STDERR.puts e
-      end
+      CometIO.emit type, data if type.size > 0
       {:type => type, :data => data}.to_json
     end
     
