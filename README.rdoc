@@ -2,25 +2,45 @@
 
 * http://github.com/shokai/sinatra-cometio
 
+== INSTALL:
+
+* gem install sinatra-cometio
+
 == DESCRIPTION:
 
-FIX (describe your package)
-
-== FEATURES/PROBLEMS:
-
-* FIX (list of features or problems)
+Node.js like Comet I/O plugin for Sinatra
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+server
+
+  require 'sinatra'
+  require 'sinatra/cometio'
+
+  ## echo
+  CometIO.on :chat do |data|
+    self.push :chat, data
+  end
+
+
+client
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="<%= cometio_js %>"></script>
+
+  var io = new CometIO().connect();
+
+  // client <-- server
+  io.on("chat", function(data){
+    consle.log(data.name+" : "+data.message);
+  });
+
+  // client --> server
+  io.push("chat", {name: "shokai", message: "hello"});
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
-
-== INSTALL:
-
-* FIX (sudo gem install, anything else)
+* Ruby 1.8.7+ or 1.9.2+
 
 == LICENSE:
 
