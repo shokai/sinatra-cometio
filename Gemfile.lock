@@ -3,7 +3,7 @@ GEM
   specs:
     RedCloth (4.2.9)
     activesupport (2.3.14)
-    hoe (3.1.1)
+    hoe (3.2.0)
       rake (~> 0.8)
     newgem (1.5.3)
       RedCloth (>= 4.1.1)
