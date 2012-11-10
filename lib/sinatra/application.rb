@@ -35,7 +35,13 @@ module Sinatra
         CometIO.emit :connect, sid
         
         EM::add_timer 10 do
-          s.close
+          begin
+            s.write({:type => :cometio_heartbeat, :data => {:time => Time.now.to_s}}.to_json)
+            s.flush
+            s.close
+          rescue
+            s.close
+          end
           CometIO.channel.unsubscribe sid
         end
       end
