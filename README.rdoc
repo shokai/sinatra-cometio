@@ -23,10 +23,13 @@ server
   end
 
 
-client
+client HTML
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   <script src="<%= cometio_js %>"></script>
+
+
+client JavaScript
 
   var io = new CometIO().connect();
 
