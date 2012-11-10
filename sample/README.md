@@ -2,7 +2,7 @@ Comet Chat
 ==========
 
 * Ruby 1.8.7+ or 1.9.2+
-* Sinatra 1.3+
+* sinatra-cometio with Sinatra1.3+
 
 
 Install Dependencies
