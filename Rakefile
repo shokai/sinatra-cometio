@@ -1,5 +1,5 @@
 require 'rubygems'
-gem 'hoe', '>= 2.1.0'
+gem 'hoe', '>= 3.1.0'
 require 'hoe'
 require 'fileutils'
 require './lib/sinatra-cometio'
@@ -11,10 +11,12 @@ Hoe.plugin :newgem
 # Generate all the Rake tasks
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
 $hoe = Hoe.spec 'sinatra-cometio' do
-  self.developer 'FIXME full name', 'FIXME email'
-  self.post_install_message = 'PostInstall.txt' # TODO remove if post-install message not required
+  self.developer 'Sho Hashimoto', 'hashimoto@shokai.org'
   self.rubyforge_name       = self.name # TODO this is default value
-  # self.extra_deps         = [['activesupport','>= 2.0.2']]
+  self.extra_deps         = [['sinatra','>= 1.3.3'],
+                             ['eventmachine', '>= 1.0.0'],
+                             ['sinatra-contrib', '>= 1.3.2'],
+                             ['event_emitter', '>= 0.0.7']]
 
 end
 

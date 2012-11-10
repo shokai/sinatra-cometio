@@ -1,5 +1,6 @@
 require 'json'
 require 'event_emitter'
+require 'sinatra/streaming'
 require File.expand_path 'application', File.dirname(__FILE__)
 
 class CometIO
