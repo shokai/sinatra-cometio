@@ -3,7 +3,7 @@ GEM
   specs:
     backports (2.6.5)
     daemons (1.1.9)
-    event_emitter (0.0.7)
+    event_emitter (0.1.0)
     eventmachine (1.0.0)
     foreman (0.60.2)
       thor (>= 0.13.6)

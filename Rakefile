@@ -16,7 +16,7 @@ $hoe = Hoe.spec 'sinatra-cometio' do
   self.extra_deps         = [['sinatra','>= 1.3.3'],
                              ['eventmachine', '>= 1.0.0'],
                              ['sinatra-contrib', '>= 1.3.2'],
-                             ['event_emitter', '>= 0.0.7']]
+                             ['event_emitter', '>= 0.1.0']]
 
 end
 
