@@ -1,4 +1,5 @@
 require 'json'
+require 'digest/md5'
 require 'event_emitter'
 require 'sinatra/streaming'
 require File.expand_path 'application', File.dirname(__FILE__)
@@ -14,7 +15,7 @@ class CometIO
   end
 
   def self.create_session
-    "#{Time.now.to_i}_#{Time.now.usec}"
+    Digest::MD5.hexdigest "#{Time.now.to_i}_#{Time.now.usec}"
   end
 end
 EventEmitter.apply CometIO
