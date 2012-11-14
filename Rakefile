@@ -15,6 +15,7 @@ $hoe = Hoe.spec 'sinatra-cometio' do
   self.rubyforge_name       = self.name # TODO this is default value
   self.extra_deps         = [['sinatra','>= 1.3.3'],
                              ['eventmachine', '>= 1.0.0'],
+                             ['json'],
                              ['sinatra-contrib', '>= 1.3.2'],
                              ['event_emitter', '>= 0.1.0']]
 
