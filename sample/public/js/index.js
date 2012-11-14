@@ -5,7 +5,8 @@ io.on("chat", function(data){
   $("#chat #timeline").prepend(m);
 });
 
-$(function(){
+io.on("connect", function(session){
+  alert("connect!! "+session);
   $("#chat #btn_send").click(post);
   $("#chat #message").keydown(function(e){
     if(e.keyCode == 13) post();

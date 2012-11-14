@@ -12,5 +12,9 @@ class CometIO
   def self.push(type, data)
     self.channel.push :type => type, :data => data
   end
+
+  def self.create_session
+    "#{Time.now.to_i}_#{Time.now.usec}"
+  end
 end
 EventEmitter.apply CometIO

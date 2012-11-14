@@ -3,7 +3,7 @@ CometIO.on :chat do |data|
 end
 
 CometIO.on :connect do |id|
-  puts "comet <#{id}> connect."
+  puts "new client <#{id}>"
 end
 
 EM::defer do
