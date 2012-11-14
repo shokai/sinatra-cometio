@@ -7,9 +7,7 @@ if development?
   $:.unshift File.expand_path '../lib', File.dirname(__FILE__)
 end
 require 'sinatra/cometio'
-
-require File.dirname(__FILE__)+'/bootstrap'
-Bootstrap.init :helpers, :controllers
+require File.dirname(__FILE__)+'/main'
 
 set :haml, :escape_html => true
 
