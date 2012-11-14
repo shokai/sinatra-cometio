@@ -61,8 +61,8 @@ module Sinatra
     post '/cometio/io' do
       type = params[:type]
       data = params[:data]
-      session = params[:session]
-      CometIO.emit type, data if type.size > 0
+      from = params[:session]
+      CometIO.emit type, data, from if type.size > 0
       {:session => session, :type => type, :data => data}.to_json
     end
     

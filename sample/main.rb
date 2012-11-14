@@ -1,4 +1,5 @@
-CometIO.on :chat do |data|
+CometIO.on :chat do |data, from|
+  puts "#{data['name']} : #{data['message']}  (from:#{from})"
   self.push :chat, data
 end
 
