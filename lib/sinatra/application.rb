@@ -35,9 +35,13 @@ module Sinatra
         end
         if session.to_s.empty?
           session = CometIO.create_session
-          s.write({:type => :set_session_id, :data => session}.to_json)
-          s.flush
-          s.close
+          begin
+            s.write({:type => :set_session_id, :data => session}.to_json)
+            s.flush
+            s.close
+          rescue
+            s.close
+          end
           CometIO.emit :connect, session
         end
         
