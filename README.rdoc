@@ -12,7 +12,7 @@ Node.js like Comet I/O plugin for Sinatra
 
 == SYNOPSIS:
 
-server
+chat server
 
   require 'sinatra'
   require 'sinatra/cometio'
@@ -24,13 +24,13 @@ server
   end
 
 
-client HTML
+chat client HTML
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   <script src="<%= cometio_js %>"></script>
 
 
-client JavaScript
+chat client JavaScript
 
   var io = new CometIO().connect();
 
@@ -43,7 +43,9 @@ client JavaScript
   io.push("chat", {name: "shokai", message: "hello"});
 
 
-see sample app => http://cometio-chat.herokuapp.com
+see sample app
+- http://cometio-chat.herokuapp.com
+- https://github.com/shokai/sinatra-cometio/tree/master/sample
 
 == REQUIREMENTS:
 
