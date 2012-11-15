@@ -18,7 +18,7 @@ class CometIO
   def self.push(type, data, to=nil)
     unless to
       self.sessions.each do |id,s|
-        if s[:queue].empty?
+        if s[:queue].empty? and s[:stream] != nil
           begin
             s[:stream].write({:type => type, :data => data}.to_json)
             s[:stream].flush

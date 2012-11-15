@@ -38,7 +38,7 @@ module Sinatra
         
         EM::add_timer 10 do
           begin
-            s.write({:type => :cometio_heartbeat, :data => {:time => Time.now.to_s}}.to_json)
+            s.write({:type => :__heartbeat, :data => {:time => Time.now.to_i}}.to_json)
             s.flush
             s.close
           rescue
