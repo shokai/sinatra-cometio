@@ -6,7 +6,7 @@ end
 CometIO.on :connect do |session|
   puts "new client <#{session}>"
   CometIO.push :chat, {:name => "system", :message => "new client <#{session}>"}
-  CometIO.push :chat, {:name => "system", :message => "welcome <#{session}>"}, session
+  CometIO.push :chat, {:name => "system", :message => "welcome <#{session}>"}, {:to => session}
 end
 
 EM::defer do

@@ -15,8 +15,10 @@ class CometIO
     }
   end
 
-  def self.push(type, data, to=nil)
-    unless to
+  def self.push(type, data, opt={})
+    if opt[:to]
+      self.sessions[opt[:to].to_s][:queue].push :type => type, :data => data
+    else
       self.sessions.each do |id,s|
         if s[:queue].empty? and s[:stream] != nil
           begin
@@ -31,8 +33,6 @@ class CometIO
           s[:queue].push :type => type, :data => data
         end
       end
-    else
-      self.sessions[to.to_s][:queue].push :type => type, :data => data
     end
   end
 
