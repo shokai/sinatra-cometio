@@ -13,6 +13,10 @@ io.on("connect", function(session){
   });
 });
 
+io.on("error", function(err){
+  console.error(err);
+});
+
 var post = function(){
   var name = $("#chat #name").val();
   var message = $("#chat #message").val();
