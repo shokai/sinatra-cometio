@@ -3,9 +3,10 @@ CometIO.on :chat do |data, from|
   self.push :chat, data
 end
 
-CometIO.on :connect do |id|
-  puts "new client <#{id}>"
-  CometIO.push :chat, {:name => "system", :message => "new client <#{id}>"}
+CometIO.on :connect do |session|
+  puts "new client <#{session}>"
+  CometIO.push :chat, {:name => "system", :message => "new client <#{session}>"}
+  CometIO.push :chat, {:name => "system", :message => "welcome <#{session}>"}, session
 end
 
 EM::defer do

@@ -43,6 +43,14 @@ module Sinatra
             s.close
           end
           CometIO.emit :connect, session
+        elsif !CometIO.sessions[session][:queue].empty?
+          begin
+            s.write CometIO.sessions[session][:queue].shift.to_json
+            s.flush
+            s.close
+          rescue
+            s.close
+          end
         end
         
         EM::add_timer 10 do

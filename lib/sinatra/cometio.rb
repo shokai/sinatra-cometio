@@ -9,9 +9,17 @@ class CometIO
   def self.channel
     @@channel ||= EM::Channel.new
   end
+
+  def self.sessions
+    @@sessions ||= Hash.new{|h,k| h[k] = {:queue => []} }
+  end
   
-  def self.push(type, data)
-    self.channel.push :type => type, :data => data
+  def self.push(type, data, to=nil)
+    unless to
+      self.channel.push :type => type, :data => data
+    else
+      self.sessions[to.to_s][:queue].push :type => type, :data => data
+    end
   end
 
   def self.create_session
