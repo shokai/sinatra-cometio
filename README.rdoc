@@ -18,7 +18,8 @@ server
   require 'sinatra/cometio'
 
   ## echo
-  CometIO.on :chat do |data|
+  CometIO.on :chat do |data, session|
+    puts "#{data['name']} : #{data['message']}  <#{session}>"
     self.push :chat, data
   end
 
