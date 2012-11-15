@@ -7,9 +7,14 @@ require File.expand_path '../sinatra-cometio', File.dirname(__FILE__)
 
 class CometIO
   def self.sessions
-    @@sessions ||= Hash.new{|h,k| h[k] = {:queue => [], :stream => nil} }
+    @@sessions ||= Hash.new{|h,session_id|
+      h[session_id] = {
+        :queue => [{:type => :set_session_id, :data => session_id}],
+        :stream => nil
+      }
+    }
   end
-  
+
   def self.push(type, data, to=nil)
     unless to
       self.sessions.each do |id,s|

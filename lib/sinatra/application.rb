@@ -21,20 +21,12 @@ module Sinatra
     end
 
     get '/cometio/io' do
-      session = params[:session]
       stream :keep_open do |s|
+        session = params[:session].to_s.empty? ? CometIO.create_session : params[:session]
         CometIO.sessions[session][:stream] = s
-        if session.to_s.empty?
-          session = CometIO.create_session
-          begin
-            s.write({:type => :set_session_id, :data => session}.to_json)
-            s.flush
-            s.close
-          rescue
-            s.close
-          end
-          CometIO.emit :connect, session
-        elsif !CometIO.sessions[session][:queue].empty?
+        CometIO.emit :connect, session if params[:session].to_s.empty?
+
+        unless CometIO.sessions[session][:queue].empty?
           begin
             s.write CometIO.sessions[session][:queue].shift.to_json
             s.flush
