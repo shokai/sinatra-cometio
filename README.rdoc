@@ -12,40 +12,68 @@ Node.js like Comet I/O plugin for Sinatra
 
 == SYNOPSIS:
 
-chat server
+=== Client --(Ajax)--> Server
 
-  require 'sinatra'
-  require 'sinatra/cometio'
-
-  ## echo
-  CometIO.on :chat do |data, session|
-    puts "#{data['name']} : #{data['message']}  <#{session}>"
-    self.push :chat, data
-  end
-
-
-chat client HTML
+Client Side
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   <script src="<%= cometio_js %>"></script>
 
-
-chat client JavaScript
-
   var io = new CometIO().connect();
+  io.push("chat", {name: "shokai", message: "hello"}); // client -> server
 
-  // client <-- server
-  io.on("chat", function(data){
-    consle.log(data.name+" : "+data.message);
+
+Server Side
+
+  require 'sinatra'
+  require 'sinatra/cometio'
+
+  CometIO.on :chat do |data, session|
+    puts "#{data['name']} : #{data['message']}  <#{session}>"
+  end
+  ## => "shokai : hello  <12abcde345f6g7h8ijk>"
+
+
+=== Server --(Comet)--> Client
+
+Server Side
+
+  CometIO.push :temperature, 35
+
+
+Client Side
+
+  io.on("temperature", function(value){
+    console.log("server temperature : " + value);
   });
 
-  // client --> server
-  io.push("chat", {name: "shokai", message: "hello"});
+
+=== On "connect" Event
+
+Client Side
+
+  io.on("connect",function(session){
+    alert("connect!!");
+  });
+
+Server Side
+
+  CometIO.on :connect do |session|
+    puts "new client <#{session}>"
+  end
+
+=== On "error" Event
+
+Client Side
 
 
-see sample app
+== Sample App
+
+chat app
+
 - http://cometio-chat.herokuapp.com
 - https://github.com/shokai/sinatra-cometio/tree/master/sample
+
 
 == REQUIREMENTS:
 
