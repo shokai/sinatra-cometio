@@ -23,16 +23,7 @@ module Sinatra
     get '/cometio/io' do
       session = params[:session]
       stream :keep_open do |s|
-        sid = CometIO.channel.subscribe do |msg|
-          begin
-            s.write msg.to_json
-            s.flush
-            s.close
-          rescue
-            s.close
-          end
-          CometIO.channel.unsubscribe sid
-        end
+        CometIO.sessions[session][:stream] = s
         if session.to_s.empty?
           session = CometIO.create_session
           begin
@@ -61,7 +52,6 @@ module Sinatra
           rescue
             s.close
           end
-          CometIO.channel.unsubscribe sid
         end
       end
     end
