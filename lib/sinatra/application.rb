@@ -24,6 +24,7 @@ module Sinatra
       stream :keep_open do |s|
         session = params[:session].to_s.empty? ? CometIO.create_session : params[:session]
         CometIO.sessions[session][:stream] = s
+        CometIO.sessions[session][:last] = Time.now
         CometIO.emit :connect, session if params[:session].to_s.empty?
 
         unless CometIO.sessions[session][:queue].empty?

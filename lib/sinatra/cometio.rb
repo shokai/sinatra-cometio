@@ -10,9 +10,24 @@ class CometIO
     @@sessions ||= Hash.new{|h,session_id|
       h[session_id] = {
         :queue => [{:type => :set_session_id, :data => session_id}],
-        :stream => nil
+        :stream => nil,
+        :last => nil
       }
     }
+  end
+
+  def self.gc
+    self.sessions.each do |id, s|
+      next unless s[:last] and s[:last] < Time.now-60
+      self.sessions.delete id rescue next
+    end
+  end
+
+  EM::defer do
+    loop do
+      self.gc
+      sleep 60
+    end
   end
 
   def self.push(type, data, opt={})
