@@ -22,7 +22,6 @@ Client Side
   var io = new CometIO().connect();
   io.push("chat", {name: "shokai", message: "hello"}); // client -> server
 
-
 Server Side
 
   require 'sinatra'
@@ -38,8 +37,8 @@ Server Side
 
 Server Side
 
-  CometIO.push :temperature, 35
-
+  CometIO.push :temperature, 35  # broadcast
+  CometIO.push :light, {:value => 150}, {:to => session_id} # to specific client
 
 Client Side
 
@@ -65,6 +64,20 @@ Server Side
 === On "error" Event
 
 Client Side
+
+
+=== Remove Event Listener
+
+Server Side
+
+  id = CometIO.on :chat do |data, from|
+    puts "#{data} - from#{from}"
+  end
+  CometIO.removeListener id
+
+or
+
+  CometIO.removeListener :chat  # remove all chat listener
 
 
 == Sample App
