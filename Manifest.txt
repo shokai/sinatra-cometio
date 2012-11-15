@@ -15,11 +15,8 @@ sample/Gemfile
 sample/Gemfile.lock
 sample/Procfile
 sample/README.md
-sample/bootstrap.rb
 sample/config.ru
-sample/controllers/css.rb
-sample/controllers/main.rb
-sample/helpers/helper.rb
+sample/main.rb
 sample/public/js/index.js
 sample/views/index.haml
 sample/views/main.scss
