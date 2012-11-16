@@ -65,6 +65,10 @@ Server Side
 
 Client Side
 
+  io.on("error", function(err){
+    console.error(err);
+  });
+
 
 === Remove Event Listener
 
