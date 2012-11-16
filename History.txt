@@ -1,3 +1,7 @@
+=== 0.0.4 2012-11-16
+
+* removeListener on client side
+
 === 0.0.3 2012-11-16
 
 * emit/on "error" event on client side.
