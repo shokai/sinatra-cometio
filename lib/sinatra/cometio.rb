@@ -9,7 +9,7 @@ class CometIO
   def self.sessions
     @@sessions ||= Hash.new{|h,session_id|
       h[session_id] = {
-        :queue => [{:type => :set_session_id, :data => session_id}],
+        :queue => [{:type => :__session_id, :data => session_id}],
         :stream => nil,
         :last => nil
       }
