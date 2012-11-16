@@ -74,10 +74,10 @@ Client Side
 
 Server Side
 
-  id = CometIO.on :chat do |data, from|
+  event_id = CometIO.on :chat do |data, from|
     puts "#{data} - from#{from}"
   end
-  CometIO.removeListener id
+  CometIO.removeListener event_id
 
 or
 
