@@ -1,3 +1,8 @@
+=== 0.0.3 2012-11-16
+
+* emit/on "error" event on client side.
+* udpate README and gem require.
+
 === 0.0.2 2012-11-15
 
 * support session
