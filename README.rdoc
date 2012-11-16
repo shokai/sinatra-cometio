@@ -84,6 +84,17 @@ or
   CometIO.removeListener :chat  # remove all chat listener
 
 
+Client Side
+
+  var event_id = io.on("error", function(err){
+    console.error("CometIO error : "err);
+  });
+  io.removeListener(event_id);
+
+or
+
+  io.removeListener("error");  // remove all error listener
+
 == Sample App
 
 chat app
