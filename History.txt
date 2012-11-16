@@ -1,3 +1,7 @@
+=== 0.0.5 2012-11-16
+
+* add github page link
+
 === 0.0.4 2012-11-16
 
 * removeListener on client side
