@@ -19,7 +19,14 @@ Node.js like Comet I/O plugin for Sinatra
 
 == SYNOPSIS:
 
-=== Client --(Ajax)--> Server
+=== Server --(Comet)--> Client
+
+Server Side
+
+  require 'sinatra'
+  require 'sinatra/cometio'
+  CometIO.push :temperature, 35  # to all clients
+  CometIO.push :light, {:value => 150}, {:to => session_id} # to specific client
 
 Client Side
 
@@ -27,38 +34,31 @@ Client Side
   <script src="<%= cometio_js %>"></script>
 
   var io = new CometIO().connect();
+  io.on("temperature", function(value){
+    console.log("server temperature : " + value);
+  }); // => "server temperature : 35"
+  io.on("light", function(data){
+    console.log("server light sensor :  + data.value);
+  }); // => "server light sensor : 150"
+
+=== Client --(Ajax)--> Server
+
+Client Side
+
   io.push("chat", {name: "shokai", message: "hello"}); // client -> server
 
 Server Side
-
-  require 'sinatra'
-  require 'sinatra/cometio'
 
   CometIO.on :chat do |data, session|
     puts "#{data['name']} : #{data['message']}  <#{session}>"
   end
   ## => "shokai : hello  <12abcde345f6g7h8ijk>"
 
-
-=== Server --(Comet)--> Client
-
-Server Side
-
-  CometIO.push :temperature, 35  # broadcast
-  CometIO.push :light, {:value => 150}, {:to => session_id} # to specific client
-
-Client Side
-
-  io.on("temperature", function(value){
-    console.log("server temperature : " + value);
-  });
-
-
 === On "connect" Event
 
 Client Side
 
-  io.on("connect",function(session){
+  io.on("connect", function(session){
     alert("connect!!");
   });
 
@@ -88,7 +88,7 @@ Server Side
 
 or
 
-  CometIO.removeListener :chat  # remove all chat listener
+  CometIO.removeListener :chat  # remove all "chat" listener
 
 
 Client Side
@@ -100,7 +100,7 @@ Client Side
 
 or
 
-  io.removeListener("error");  // remove all error listener
+  io.removeListener("error");  // remove all "error" listener
 
 == Sample App
 
