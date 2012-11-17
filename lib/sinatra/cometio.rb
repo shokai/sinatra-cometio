@@ -1,3 +1,4 @@
+require 'eventmachine'
 require 'json'
 require 'digest/md5'
 require 'event_emitter'
