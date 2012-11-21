@@ -1,3 +1,7 @@
+=== 0.0.7 2012-11-22
+
+* add sinatra helper "cometio_url"
+
 === 0.0.6 2012-11-17
 
 * fix README
