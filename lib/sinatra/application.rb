@@ -6,6 +6,10 @@ module Sinatra
       def cometio_js
         "#{env['rack.url_scheme']}://#{env['HTTP_HOST']}#{env['SCRIPT_NAME']}/cometio/cometio.js"
       end
+
+      def cometio_url
+        "#{env['rack.url_scheme']}://#{env['HTTP_HOST']}#{env['SCRIPT_NAME']}/cometio/io"
+      end
     end
 
     get '/cometio/cometio.js' do
@@ -15,7 +19,6 @@ module Sinatra
                File.open(File.expand_path '../js/cometio.js', File.dirname(__FILE__)) do |f|
                  js = f.read
                end
-               cometio_url = "#{env['rack.url_scheme']}://#{env['HTTP_HOST']}#{env['SCRIPT_NAME']}/cometio/io"
                ERB.new(js).result(binding)
                )
     end
