@@ -1,5 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
-gem 'hoe'
-gem 'newgem'
-gem 'sinatra'
+# Specify your gem's dependencies in sinatra-cometio.gemspec
+gemspec
