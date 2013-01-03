@@ -4,7 +4,7 @@ require 'sinatra-cometio/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "sinatra-cometio"
-  gem.version       = SinatraCometio::VERSION
+  gem.version       = SinatraCometIO::VERSION
   gem.authors       = ["Sho Hashimoto"]
   gem.email         = ["hashimoto@shokai.org"]
   gem.description   = %q{Node.js like Comet I/O plugin for Sinatra.}

@@ -1,3 +1,3 @@
-module SinatraCometio
+module SinatraCometIO
   VERSION = '0.0.9'
 end
