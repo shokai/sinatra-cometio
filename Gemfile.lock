@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     sinatra-cometio (0.0.9)
-      event_emitter (>= 0.1.0)
+      event_emitter (>= 0.2.0)
       eventmachine (>= 1.0.0)
       json (>= 1.7.0)
       rack
@@ -13,7 +13,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     backports (2.6.5)
-    event_emitter (0.2.0)
+    event_emitter (0.2.2)
     eventmachine (1.0.0)
     json (1.7.6)
     rack (1.4.1)
