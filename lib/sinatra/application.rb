@@ -15,9 +15,11 @@ module Sinatra
     get '/cometio/cometio.js' do
       content_type 'application/javascript'
       @js ||= (
-               js = nil
-               File.open(File.expand_path '../js/cometio.js', File.dirname(__FILE__)) do |f|
-                 js = f.read
+               js = ''
+               Dir.glob(File.expand_path '../js/*.js', File.dirname(__FILE__)).each do |i|
+                 File.open(i) do |f|
+                   js += f.read
+                 end
                end
                ERB.new(js).result(binding)
                )
