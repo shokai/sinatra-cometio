@@ -21,6 +21,7 @@ class CometIO
     self.sessions.each do |id, s|
       next unless s[:last] and s[:last] < Time.now-60
       self.sessions.delete id rescue next
+      self.emit :disconnect, id
     end
   end
 
