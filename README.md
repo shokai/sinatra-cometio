@@ -83,6 +83,10 @@ Server Side
 CometIO.on :connect do |session|
   puts "new client <#{session}>"
 end
+
+CometIO.on :disconnect do |session|
+  puts "client disconnected <#{session}>"
+end
 ```
 
 ### On "error" Event
