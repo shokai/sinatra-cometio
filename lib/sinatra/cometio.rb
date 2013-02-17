@@ -52,8 +52,8 @@ class CometIO
     end
   end
 
-  def self.create_session
-    Digest::MD5.hexdigest "#{Time.now.to_i}_#{Time.now.usec}"
+  def self.create_session(ip_addr)
+    Digest::MD5.hexdigest "#{Time.now.to_i}_#{Time.now.usec}_#{ip_addr}"
   end
 end
 EventEmitter.apply CometIO
