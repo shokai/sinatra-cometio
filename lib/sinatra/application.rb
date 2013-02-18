@@ -41,7 +41,7 @@ module Sinatra
             s.close
           end
         end
-        
+
         EM::add_timer 10 do
           begin
             s.write({:type => :__heartbeat, :data => {:time => Time.now.to_i}}.to_json)

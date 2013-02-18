@@ -33,22 +33,20 @@ class CometIO
   end
 
   def self.push(type, data, opt={})
-    if opt[:to]
-      self.sessions[opt[:to].to_s][:queue].push :type => type, :data => data
-    else
-      self.sessions.each do |id,s|
-        if s[:queue].empty? and s[:stream] != nil
-          begin
-            s[:stream].write({:type => type, :data => data}.to_json)
-            s[:stream].flush
-            s[:stream].close
-          rescue
-            s[:stream].class
-            s[:queue].push :type => type, :data => data
-          end
-        else
+    session_ids = opt[:to].to_s.empty? ? self.sessions.keys : [opt[:to]]
+    session_ids.each do |id|
+      s = self.sessions[id]
+      if s[:queue].empty? and s[:stream] != nil
+        begin
+          s[:stream].write({:type => type, :data => data}.to_json)
+          s[:stream].flush
+          s[:stream].close
+        rescue
+          s[:stream].close
           s[:queue].push :type => type, :data => data
         end
+      else
+        s[:queue].push :type => type, :data => data
       end
     end
   end
