@@ -20,6 +20,12 @@ Run
 => http://localhost:5000
 
 
+CUI Client
+----------
+
+    % ruby bin/cui_chat_client.rb
+
+
 Deploy Heroku
 -------------
 
