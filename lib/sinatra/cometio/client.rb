@@ -58,6 +58,6 @@ class CometIO
         end
       end
     end
-    
+
   end
 end

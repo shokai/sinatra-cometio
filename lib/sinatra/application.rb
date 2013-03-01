@@ -58,8 +58,8 @@ module Sinatra
       type = params[:type]
       data = params[:data]
       from = params[:session]
-      CometIO.emit type, data, from if type.size > 0
-      {:session => session, :type => type, :data => data}.to_json
+      CometIO.emit type, data, from if type.to_s.size > 0
+      {:session => from, :type => type, :data => data}.to_json
     end
     
   end
