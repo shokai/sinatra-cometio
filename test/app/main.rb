@@ -1,3 +1,7 @@
+pid_file = ENV['PID_FILE'] || "/tmp/sinatra-cometio-test-pid"
+File.open(pid_file, "w+") do |f|
+  f.write Process.pid.to_s
+end
 
 get '/' do
   "sinatra-cometio v#{SinatraCometIO::VERSION}"
