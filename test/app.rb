@@ -13,7 +13,7 @@ class App
   end
 
   def self.pid_file
-    ENV['PID_FILE'] || "/tmp/sinatra-cometio-test-pid"
+    ENV['PID_FILE'] || "/tmp/sinatra-cometio-testapp.pid"
   end
 
   def self.app_dir
