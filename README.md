@@ -140,6 +140,16 @@ chat app
 - https://github.com/shokai/sinatra-cometio/tree/master/sample
 
 
+Test
+----
+
+    % gem install bundler
+    % bundle install
+    % export PORT=5000
+    % export PID_FILE=/tmp/sinatra-cometio-test.pid
+    % rake test
+
+
 Contributing
 ------------
 1. Fork it
