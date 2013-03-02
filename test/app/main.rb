@@ -15,13 +15,13 @@ CometIO.on :disconnect do |session|
   puts "disconnect client <#{session}>"
 end
 
-CometIO.on :to_all do |data, from|
+CometIO.on :broadcast do |data, from|
   puts from
-  puts "to_all <#{from}> - #{data.to_json}"
-  push :echo, data
+  puts "broadcast <#{from}> - #{data.to_json}"
+  push :broadcast, data
 end
 
-CometIO.on :to_me do |data, from|
-  puts "to_me <#{from}> - #{data.to_json}"
-  push :echo, data, :to => from
+CometIO.on :message do |data, from|
+  puts "message <#{from}> - #{data.to_json}"
+  push :message, data, :to => data['to']
 end
