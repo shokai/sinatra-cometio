@@ -15,6 +15,7 @@ class CometIO
       raise ArgumentError, "invalid URL (#{url})" unless url.kind_of? String and url =~ /^https?:\/\/.+/
       @url = url
       @session = nil
+      @running = false
     end
 
     def push(type, data)
@@ -28,18 +29,25 @@ class CometIO
     end
 
     def connect
+      return self if @running
       self.on :__session_id do |session|
         @session = session
         self.emit :connect, @session
       end
+      @running = true
       get
       return self
+    end
+
+    def close
+      @running = false
+      self.remove_listener :__session_id
     end
 
     private
     def get
       Thread.new do
-        loop do
+        while @running do
           begin
             res = HTTParty.get "#{@url}?session=#{@session}", :timeout => 60000
             unless res.code == 200

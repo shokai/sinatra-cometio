@@ -26,6 +26,7 @@ class TestCometio < MiniTest::Unit::TestCase
       break if res != nil
       sleep 0.1
     end
+    client.close
     assert res != nil, 'server not respond'
     assert res["time"] == post_data[:time]
     assert res["msg"] == post_data[:msg]
@@ -50,6 +51,8 @@ class TestCometio < MiniTest::Unit::TestCase
       end
       client2.on :message do |data|
         res2 = data
+        client2.close
+        client.close
       end
     end
 
@@ -71,6 +74,7 @@ class TestCometio < MiniTest::Unit::TestCase
     res = nil
     client.on :broadcast do |data|
       res = data
+      client.close
     end
 
     res2 = nil
@@ -81,6 +85,7 @@ class TestCometio < MiniTest::Unit::TestCase
       end
       client2.on :broadcast do |data|
         res2 = data
+        client2.close
       end
     end
 
