@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sinatra-cometio (0.1.4)
+    sinatra-cometio (0.1.5)
       event_emitter (>= 0.2.0)
       eventmachine (>= 1.0.0)
       httparty
@@ -21,7 +21,7 @@ GEM
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
     json (1.7.7)
-    minitest (4.5.0)
+    minitest (4.6.2)
     multi_json (1.6.1)
     multi_xml (0.5.3)
     rack (1.5.2)
