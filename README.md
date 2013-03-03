@@ -132,6 +132,20 @@ or
 io.removeListener("error");  // remove all "error" listener
 ```
 
+Config
+------
+
+config.ru
+```ruby
+require 'sinatra'
+require 'sinatra/cometio'
+require File.dirname(__FILE__)+'/main'
+
+set :cometio, :xhr_interval => 20
+
+run Sinatra::Application
+```
+
 Sample App
 ----------
 chat app
