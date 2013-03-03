@@ -1,3 +1,9 @@
+=== 0.1.6 2013-3-3
+
+* add IO close function - CometIO.close()
+* set :cometio, :xhr_interval => 15
+* use Sinatra.register
+
 === 0.1.5 2013-3-3
 
 * add tests with ruby client
@@ -17,7 +23,7 @@
 
 === 0.1.1 2013-2-7
 
-* fix
+* little fix
 
 === 0.1.0 2013-2-6
 
