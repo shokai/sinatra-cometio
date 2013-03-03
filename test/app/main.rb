@@ -4,7 +4,7 @@ File.open(pid_file, "w+") do |f|
 end
 
 get '/' do
-  "sinatra-cometio v#{SinatraCometIO::VERSION}"
+  "sinatra-cometio v#{Sinatra::CometIO::VERSION}"
 end
 
 CometIO.on :connect do |session|
