@@ -7,4 +7,4 @@ require 'sinatra'
 require 'sinatra/cometio'
 require File.dirname(__FILE__)+'/main'
 
-run Sinatra::Application
+run TestApp
