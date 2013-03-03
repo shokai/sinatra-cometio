@@ -19,7 +19,7 @@ class CometIO
 
   def self.gc
     self.sessions.each do |id, s|
-      next unless s[:last] and s[:last] < Time.now-60
+      next unless s[:last] and s[:last] < Time.now-20
       self.sessions.delete id rescue next
       self.emit :disconnect, id
     end
@@ -28,7 +28,7 @@ class CometIO
   EM::defer do
     loop do
       self.gc
-      sleep 60
+      sleep 15
     end
   end
 
