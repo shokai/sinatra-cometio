@@ -4,6 +4,7 @@ require 'digest/md5'
 require 'event_emitter'
 require 'sinatra/streaming'
 require File.expand_path '../sinatra-cometio/version', File.dirname(__FILE__)
+require File.expand_path 'options', File.dirname(__FILE__)
 require File.expand_path 'application', File.dirname(__FILE__)
 Sinatra.register Sinatra::CometIO
 
@@ -20,7 +21,7 @@ class CometIO
 
   def self.gc
     self.sessions.each do |id, s|
-      next unless s[:last] and s[:last] < Time.now-20
+      next unless s[:last] and s[:last] < Time.now-CometIO.options[:xhr_interval]*2-10
       self.sessions.delete id rescue next
       self.emit :disconnect, id
     end
@@ -29,7 +30,7 @@ class CometIO
   EM::defer do
     loop do
       self.gc
-      sleep 15
+      sleep CometIO.options[:xhr_interval]+5
     end
   end
 

@@ -1,5 +1,13 @@
 module Sinatra::CometIO
 
+  def cometio=(options)
+    CometIO.options = options
+  end
+
+  def cometio
+    CometIO.options
+  end
+
   helpers do
     def cometio_js
       "#{env['rack.url_scheme']}://#{env['HTTP_HOST']}#{env['SCRIPT_NAME']}/cometio/cometio.js"
@@ -40,7 +48,7 @@ module Sinatra::CometIO
         end
       end
 
-      EM::add_timer 10 do
+      EM::add_timer CometIO.options[:xhr_interval] do
         begin
           s.write({:type => :__heartbeat, :data => {:time => Time.now.to_i}}.to_json)
           s.flush
