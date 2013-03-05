@@ -20,11 +20,10 @@ class CometIO
 
     def push(type, data)
       begin
-        res = HTTParty.post @url, :body => {:type => type, :data => data, :session => @session}
+        res = HTTParty.post @url, :timeout => 10, :body => {:type => type, :data => data, :session => @session}
+        emit :error, "CometIO push error" unless res.code == 200
       rescue StandardError, Timeout::Error => e
         emit :error, "CometIO push error"
-      ensure
-        emit :error, "CometIO push error" unless res.code == 200
       end
     end
 
@@ -49,7 +48,7 @@ class CometIO
       Thread.new do
         while @running do
           begin
-            res = HTTParty.get "#{@url}?session=#{@session}", :timeout => 60000
+            res = HTTParty.get "#{@url}?session=#{@session}", :timeout => 120
             unless res.code == 200
               self.emit :error, "CometIO get error"
               sleep 10
@@ -57,9 +56,12 @@ class CometIO
             else
               data = JSON.parse res.body
               self.emit data['type'], data['data']
+              next
             end
-          rescue StandardError, Timeout::Error
-            self.emit :error, "CometIO get error"
+          rescue Timeout::Error, JSON::ParserError
+            next
+          rescue StandardError
+            self.emit :error, "CometIO get error 2"
             sleep 10
             next
           end
