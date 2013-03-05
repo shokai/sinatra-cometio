@@ -1,3 +1,8 @@
+=== 0.1.7 2013-3-3
+
+* bugfix CometIO Ruby client
+* change config key xhr_interval -> timeout
+
 === 0.1.6 2013-3-3
 
 * add IO close function - CometIO.close()
