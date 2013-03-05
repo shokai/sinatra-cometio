@@ -141,7 +141,7 @@ require 'sinatra'
 require 'sinatra/cometio'
 require File.dirname(__FILE__)+'/main'
 
-set :cometio, :xhr_interval => 20
+set :cometio, :timeout => 60
 
 run Sinatra::Application
 ```

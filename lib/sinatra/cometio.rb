@@ -21,7 +21,7 @@ class CometIO
 
   def self.gc
     self.sessions.each do |id, s|
-      next unless s[:last] and s[:last] < Time.now-CometIO.options[:xhr_interval]*2-10
+      next unless s[:last] and s[:last] < Time.now-CometIO.options[:timeout]*2-10
       self.sessions.delete id rescue next
       self.emit :disconnect, id
     end
@@ -30,7 +30,7 @@ class CometIO
   EM::defer do
     loop do
       self.gc
-      sleep CometIO.options[:xhr_interval]+5
+      sleep CometIO.options[:timeout]+5
     end
   end
 

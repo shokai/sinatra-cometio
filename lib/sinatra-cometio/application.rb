@@ -48,7 +48,7 @@ module Sinatra::CometIO
         end
       end
 
-      EM::add_timer CometIO.options[:xhr_interval] do
+      EM::add_timer CometIO.options[:timeout] do
         begin
           s.write({:type => :__heartbeat, :data => {:time => Time.now.to_i}}.to_json)
           s.flush

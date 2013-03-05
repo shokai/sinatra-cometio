@@ -2,7 +2,7 @@ class CometIO
 
   def self.default_options
     {
-      :xhr_interval => [15, lambda{|v| v.kind_of? Fixnum and v >= 10 }]
+      :timeout => [120, lambda{|v| v.kind_of? Fixnum and v >= 20 }]
     }
   end
 
