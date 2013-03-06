@@ -5,6 +5,10 @@ io.on("chat", function(data){
   $("#chat #timeline").prepend(m);
 });
 
+io.on("*", function(event, data){ // catch all events
+  console.log(event + " - " + JSON.stringify(data));
+});
+
 io.on("connect", function(session){
   console.log("connect!! "+session);
   $("#chat #btn_send").click(post);
