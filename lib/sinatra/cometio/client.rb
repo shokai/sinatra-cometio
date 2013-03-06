@@ -61,7 +61,7 @@ class CometIO
           rescue Timeout::Error, JSON::ParserError
             next
           rescue StandardError
-            self.emit :error, "CometIO get error 2"
+            self.emit :error, "CometIO get error"
             sleep 10
             next
           end
