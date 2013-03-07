@@ -64,8 +64,18 @@ module Sinatra::CometIO
     type = params[:type]
     data = params[:data]
     from = params[:session]
-    CometIO.emit type, data, from if type.to_s.size > 0
-    {:session => from, :type => type, :data => data}.to_json
+    EM::defer do
+      CometIO.emit type, data, from unless type.to_s.empty?
+    end
+    stream :keep_open do |s|
+      begin
+        s.write({:session => from, :type => type, :data => data}.to_json)
+        s.flush
+        s.close
+      rescue
+        s.close
+      end
+    end
   end
 
 end
