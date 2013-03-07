@@ -29,6 +29,10 @@ Server Side
 ```ruby
 require 'sinatra'
 require 'sinatra/cometio'
+
+run Sinatra::Application
+```
+```ruby
 CometIO.push :temperature, 35  # to all clients
 CometIO.push :light, {:value => 150}, {:to => session_id} # to specific client
 ```
