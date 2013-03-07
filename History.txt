@@ -1,3 +1,7 @@
+=== 0.1.9 2013-3-7
+
+* use stream on post
+
 === 0.1.8 2013-3-6
 
 * update event_emitter.js
