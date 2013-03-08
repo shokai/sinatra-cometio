@@ -29,6 +29,7 @@ Server Side
 ```ruby
 require 'sinatra'
 require 'sinatra/cometio'
+set :cometio, :timeout => 120
 
 run Sinatra::Application
 ```
@@ -136,19 +137,6 @@ or
 io.removeListener("error");  // remove all "error" listener
 ```
 
-Config
-------
-
-config.ru
-```ruby
-require 'sinatra'
-require 'sinatra/cometio'
-require File.dirname(__FILE__)+'/main'
-
-set :cometio, :timeout => 60
-
-run Sinatra::Application
-```
 
 Sample App
 ----------
