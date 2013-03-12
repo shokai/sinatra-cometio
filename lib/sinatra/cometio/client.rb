@@ -54,8 +54,11 @@ class CometIO
               sleep 10
               next
             else
-              data = JSON.parse res.body
-              self.emit data['type'], data['data']
+              data_arr = JSON.parse res.body
+              data_arr = [data_arr] unless data_arr.kind_of? Array
+              data_arr.each do |data|
+                self.emit data['type'], data['data']
+              end
               next
             end
           rescue Timeout::Error, JSON::ParserError
