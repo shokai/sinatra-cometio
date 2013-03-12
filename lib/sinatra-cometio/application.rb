@@ -40,17 +40,18 @@ module Sinatra::CometIO
 
       unless CometIO.sessions[session][:queue].empty?
         begin
-          s.write CometIO.sessions[session][:queue].shift.to_json
+          s.write CometIO.sessions[session][:queue].to_json
           s.flush
           s.close
         rescue
           s.close
         end
+        CometIO.sessions[session][:queue] = []
       end
 
       EM::add_timer CometIO.options[:timeout] do
         begin
-          s.write({:type => :__heartbeat, :data => {:time => Time.now.to_i}}.to_json)
+          s.write([{:type => :__heartbeat, :data => {:time => Time.now.to_i}}].to_json)
           s.flush
           s.close
         rescue

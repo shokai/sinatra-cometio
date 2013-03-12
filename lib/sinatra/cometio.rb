@@ -40,7 +40,7 @@ class CometIO
       s = self.sessions[id]
       if s[:queue].empty? and s[:stream] != nil
         begin
-          s[:stream].write({:type => type, :data => data}.to_json)
+          s[:stream].write([{:type => type, :data => data}].to_json)
           s[:stream].flush
           s[:stream].close
         rescue
