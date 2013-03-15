@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 Bundler.require
+require 'sinatra/base'
 if development?
   $stdout.sync = true
   require 'sinatra/reloader'
@@ -12,4 +13,4 @@ require File.dirname(__FILE__)+'/main'
 set :haml, :escape_html => true
 set :cometio, :timeout => 60
 
-run Sinatra::Application
+run ChatApp

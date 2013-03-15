@@ -10,6 +10,7 @@ module Sinatra
     end
 
     def self.registered(app)
+      app.helpers Sinatra::Streaming
       app.helpers Sinatra::CometIO::Helpers
 
       app.get '/cometio/cometio.js' do

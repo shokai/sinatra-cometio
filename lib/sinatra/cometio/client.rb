@@ -3,7 +3,7 @@ require 'event_emitter'
 require 'httparty'
 require 'json'
 
-class CometIO
+module CometIO
   class Client
     class Error < StandardError
     end
