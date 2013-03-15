@@ -1,22 +1,22 @@
-CometIO.on :chat do |data, from|
+Sinatra::CometIO.on :chat do |data, from|
   puts "#{data['name']} : #{data['message']}  (from:#{from})"
-  self.push :chat, data
+  Sinatra::CometIO.push :chat, data
 end
 
-CometIO.on :connect do |session|
+Sinatra::CometIO.on :connect do |session|
   puts "new client <#{session}>"
-  CometIO.push :chat, {:name => "system", :message => "new client <#{session}>"}
-  CometIO.push :chat, {:name => "system", :message => "welcome <#{session}>"}, {:to => session}
+  Sinatra::CometIO.push :chat, {:name => "system", :message => "new client <#{session}>"}
+  Sinatra::CometIO.push :chat, {:name => "system", :message => "welcome <#{session}>"}, {:to => session}
 end
 
-CometIO.on :disconnect do |session|
+Sinatra::CometIO.on :disconnect do |session|
   puts "disconnect client <#{session}>"
-  CometIO.push :chat, {:name => "system", :message => "bye <#{session}>"}
+  Sinatra::CometIO.push :chat, {:name => "system", :message => "bye <#{session}>"}
 end
 
 EM::defer do
   loop do
-    CometIO.push :chat, :name => 'clock', :message => Time.now.to_s
+    Sinatra::CometIO.push :chat, :name => 'clock', :message => Time.now.to_s
     sleep 60
   end
 end

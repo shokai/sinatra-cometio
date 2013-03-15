@@ -3,27 +3,28 @@ File.open(pid_file, "w+") do |f|
   f.write Process.pid.to_s
 end
 
-class TestApp < Sinatra::Application
+class TestApp < Sinatra::Base
+  register Sinatra::CometIO
 
   get '/' do
     "sinatra-cometio v#{Sinatra::CometIO::VERSION}"
   end
 
-  CometIO.on :connect do |session|
+  Sinatra::CometIO.on :connect do |session|
     puts "new client <#{session}>"
   end
 
-  CometIO.on :disconnect do |session|
+  Sinatra::CometIO.on :disconnect do |session|
     puts "disconnect client <#{session}>"
   end
 
-  CometIO.on :broadcast do |data, from|
+  Sinatra::CometIO.on :broadcast do |data, from|
     puts from
     puts "broadcast <#{from}> - #{data.to_json}"
     push :broadcast, data
   end
 
-  CometIO.on :message do |data, from|
+  Sinatra::CometIO.on :message do |data, from|
     puts "message <#{from}> - #{data.to_json}"
     push :message, data, :to => data['to']
   end
