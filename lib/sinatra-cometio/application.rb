@@ -6,7 +6,7 @@ module Sinatra
     end
 
     def cometio
-      CometIO.options
+      Sinatra::CometIO
     end
 
     def self.registered(app)
