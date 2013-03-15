@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sinatra-cometio (0.3.0)
+    sinatra-cometio (0.3.1)
       event_emitter (>= 0.2.0)
       eventmachine
       httparty
