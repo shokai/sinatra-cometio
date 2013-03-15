@@ -1,3 +1,7 @@
+=== 0.3.0 2013-03-16
+
+* support modular style
+
 === 0.2.0 2013-03-12
 
 * push multiple queued data at once
