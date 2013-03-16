@@ -1,14 +1,6 @@
 module Sinatra
   module CometIO
 
-    def cometio=(options)
-      CometIO.options = options
-    end
-
-    def cometio
-      CometIO.options
-    end
-
     def self.registered(app)
       app.helpers Sinatra::Streaming
       app.helpers Sinatra::CometIO::Helpers

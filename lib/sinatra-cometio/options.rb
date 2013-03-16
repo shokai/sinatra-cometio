@@ -1,6 +1,14 @@
 module Sinatra
   module CometIO
 
+    def cometio=(options)
+      CometIO.options = options
+    end
+
+    def cometio
+      CometIO.options
+    end
+
     def self.default_options
       {
         :timeout => [120, lambda{|v| v.kind_of? Fixnum and v >= 20 }]
