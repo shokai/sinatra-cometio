@@ -7,6 +7,7 @@ require File.expand_path '../sinatra-cometio/version', File.dirname(__FILE__)
 require File.expand_path '../sinatra-cometio/helpers', File.dirname(__FILE__)
 require File.expand_path '../sinatra-cometio/options', File.dirname(__FILE__)
 require File.expand_path '../sinatra-cometio/cometio', File.dirname(__FILE__)
+require File.expand_path '../sinatra-cometio/javascript', File.dirname(__FILE__)
 require File.expand_path '../sinatra-cometio/application', File.dirname(__FILE__)
 
 module Sinatra
