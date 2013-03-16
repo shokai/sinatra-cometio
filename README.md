@@ -34,8 +34,10 @@ set :cometio, :timeout => 120
 run Sinatra::Application
 ```
 ```ruby
-cometio.push :temperature, 35  # to all clients
-cometio.push :light, {:value => 150}, {:to => session_id} # to specific client
+io = Sinatra::CometIO
+
+io.push :temperature, 35  # to all clients
+io.push :light, {:value => 150}, {:to => session_id} # to specific client
 ```
 
 Client Side
@@ -66,7 +68,7 @@ io.push("chat", {name: "shokai", message: "hello"}); // client -> server
 Server Side
 
 ```ruby
-cometio.on :chat do |data, session|
+io.on :chat do |data, session|
   puts "#{data['name']} : #{data['message']}  <#{session}>"
 end
 ## => "shokai : hello  <12abcde345f6g7h8ijk>"
@@ -85,11 +87,11 @@ io.on("connect", function(session){
 Server Side
 
 ```ruby
-cometio.on :connect do |session|
+io.on :connect do |session|
   puts "new client <#{session}>"
 end
 
-cometio.on :disconnect do |session|
+io.on :disconnect do |session|
   puts "client disconnected <#{session}>"
 end
 ```
@@ -109,16 +111,16 @@ io.on("error", function(err){
 Server Side
 
 ```ruby
-event_id = cometio.on :chat do |data, from|
+event_id = io.on :chat do |data, from|
   puts "#{data} - from#{from}"
 end
-cometio.removeListener event_id
+io.removeListener event_id
 ```
 
 or
 
 ```ruby
-cometio.removeListener :chat  # remove all "chat" listener
+io.removeListener :chat  # remove all "chat" listener
 ```
 
 
