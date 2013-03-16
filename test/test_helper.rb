@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'bundler/setup'
 require 'minitest/autorun'
 require 'sinatra/cometio/client'
 require File.expand_path 'app', File.dirname(__FILE__)
