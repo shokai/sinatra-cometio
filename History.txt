@@ -1,3 +1,7 @@
+=== 0.3.3 2013-03-17
+
+* read javascript - Sinatra::CometIO.javascript
+
 === 0.3.2 2013-03-16
 
 * fix README
