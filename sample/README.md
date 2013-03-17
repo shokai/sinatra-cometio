@@ -24,17 +24,3 @@ CUI Client
 ----------
 
     % ruby bin/cui_chat_client.rb
-
-
-Deploy Heroku
--------------
-
-    % mkdir ~/cometio-sample
-    % cp -R ./ ~/cometio-sample/
-    % cd ~/cometio-sample
-    % git init
-    % git add ./
-    % git commit -m "first sample chat"
-    % heroku create --stack cedar
-    % git push heroku master
-    % heroku open
