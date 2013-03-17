@@ -2,13 +2,13 @@ PATH
   remote: .
   specs:
     sinatra-cometio (0.3.3)
-      event_emitter (>= 0.2.0)
-      eventmachine
-      httparty
-      json
-      rack
-      sinatra
-      sinatra-contrib
+      event_emitter (>= 0.2.3)
+      eventmachine (>= 1.0.0)
+      httparty (>= 0.10.2)
+      json (>= 1.7.0)
+      rack (>= 1.5.0)
+      sinatra (>= 1.3.6)
+      sinatra-contrib (>= 1.3.2)
 
 GEM
   remote: https://rubygems.org/
@@ -44,7 +44,7 @@ GEM
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
-    tilt (1.3.5)
+    tilt (1.3.6)
 
 PLATFORMS
   ruby
