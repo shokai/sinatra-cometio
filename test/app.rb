@@ -38,10 +38,10 @@ class App
     @running = true
     100.times do
       if File.exists? pid_file
-        sleep 1
+        sleep 0.1
         return true
       end
-      sleep 0.1
+      sleep 1
     end
     @running = false
     return false
