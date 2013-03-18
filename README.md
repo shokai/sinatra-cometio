@@ -1,9 +1,9 @@
 sinatra-cometio
 ===============
+Comet component for [Sinatra RocketIO](https://github.com/shokai/sinatra-rocketio)
 
 * Node.js like Comet I/O plugin for Sinatra.
 * http://shokai.github.com/sinatra-cometio
-* This is a component of the [RocketIO](https://github.com/shokai/sinatra-rocketio)
 
 
 Installation
