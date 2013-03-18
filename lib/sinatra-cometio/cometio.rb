@@ -29,6 +29,7 @@ module Sinatra
     def self.push(type, data, opt={})
       session_ids = opt[:to].to_s.empty? ? self.sessions.keys : [opt[:to]]
       session_ids.each do |id|
+        next unless self.sessions.include? id
         s = self.sessions[id]
         if s[:queue].empty? and s[:stream] != nil
           begin
