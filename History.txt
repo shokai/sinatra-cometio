@@ -1,3 +1,7 @@
+=== 0.3.8 2013-03-19
+
+* bugfix gem dependencies
+
 === 0.3.7 2013-03-19
 
 * not push to unexist client
