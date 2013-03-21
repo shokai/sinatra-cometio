@@ -1,3 +1,7 @@
+=== 0.3.9 2013-03-21
+
+* emit "error" on push before connect
+
 === 0.3.8 2013-03-19
 
 * bugfix gem dependencies
