@@ -44,11 +44,12 @@ io.push :light, {:value => 150}, {:to => session_id} # to specific client
 Client Side
 
 ```html
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="<%= cometio_js %>"></script>
 ```
 ```javascript
 var io = new CometIO().connect();
+
 io.on("temperature", function(value){
   console.log("server temperature : " + value);
 }); // => "server temperature : 35"
@@ -63,7 +64,9 @@ io.on("light", function(data){
 Client Side
 
 ```javascript
-io.push("chat", {name: "shokai", message: "hello"}); // client -> server
+io.on("connect", function(){
+  io.push("chat", {name: "shokai", message: "hello"}); // client -> server
+});
 ```
 
 Server Side
@@ -80,8 +83,8 @@ end
 Client Side
 
 ```javascript
-io.on("connect", function(session){
-  alert("connect!!");
+io.on("connect", function(session_id){
+  alert("connect!! "+session_id);
 });
 ```
 
@@ -90,6 +93,7 @@ Server Side
 ```ruby
 io.on :connect do |session|
   puts "new client <#{session}>"
+  io.push :hello, "hello new client!!"
 end
 
 io.on :disconnect do |session|
