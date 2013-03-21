@@ -41,9 +41,10 @@ module Sinatra
       end
 
       app.post '/cometio/io' do
+        from = params[:session]
+        halt 400, 'no session' if from.empty?
         type = params[:type]
         data = params[:data]
-        from = params[:session]
         EM::defer do
           CometIO.emit type, data, from unless type.to_s.empty?
         end
