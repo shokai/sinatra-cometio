@@ -11,7 +11,7 @@ class TestCometio < MiniTest::Unit::TestCase
   end
 
   def test_simple
-    client = CometIO::Client.new(App.cometio_url).connect
+    client = Sinatra::CometIO::Client.new(App.cometio_url).connect
     post_data = {:time => Time.now.to_s, :msg => 'hello!!'}
     res = nil
     client.on :broadcast do |data|
@@ -35,7 +35,7 @@ class TestCometio < MiniTest::Unit::TestCase
   def test_client_to_client2
     ## client --> server --> client2
 
-    client = CometIO::Client.new(App.cometio_url).connect
+    client = Sinatra::CometIO::Client.new(App.cometio_url).connect
     post_data = {:time => Time.now.to_s, :msg => 'hello!!', :to => nil}
     res = nil
     client.on :message do |data|
@@ -44,7 +44,7 @@ class TestCometio < MiniTest::Unit::TestCase
 
     res2 = nil
     client.on :connect do |session|
-      client2 = CometIO::Client.new(App.cometio_url).connect
+      client2 = Sinatra::CometIO::Client.new(App.cometio_url).connect
       client2.on :connect do |session2|
         post_data['to'] = session2
         client.push :message, post_data
@@ -69,7 +69,7 @@ class TestCometio < MiniTest::Unit::TestCase
 
   def test_broadcast
     ## client --> server --> client&client2
-    client = CometIO::Client.new(App.cometio_url).connect
+    client = Sinatra::CometIO::Client.new(App.cometio_url).connect
     post_data = {:time => Time.now.to_s, :msg => 'hello!!'}
     res = nil
     client.on :broadcast do |data|
@@ -79,7 +79,7 @@ class TestCometio < MiniTest::Unit::TestCase
 
     res2 = nil
     client.on :connect do |session|
-      client2 = CometIO::Client.new(App.cometio_url).connect
+      client2 = Sinatra::CometIO::Client.new(App.cometio_url).connect
       client2.on :connect do |session2|
         client.push :broadcast, post_data
       end
