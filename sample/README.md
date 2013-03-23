@@ -15,7 +15,7 @@ Install Dependencies
 Run
 ---
 
-    % foreman start
+    % rackup config.ru -p 5000
 
 => http://localhost:5000
 
