@@ -16,6 +16,11 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
+  gem.add_development_dependency 'minitest'
+  gem.add_development_dependency 'thin'
+  gem.add_development_dependency 'haml'
+  gem.add_development_dependency 'sass'
+
   gem.add_dependency 'sinatra-contrib', '>= 1.3.2'
   gem.add_dependency 'sinatra', '>= 1.3.0'
   gem.add_dependency 'eventmachine', '>= 1.0.0'
