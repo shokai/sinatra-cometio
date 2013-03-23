@@ -11,12 +11,14 @@ module Sinatra
 
       include EventEmitter
       attr_reader :url, :session
+      attr_accessor :timeout
 
       def initialize(url)
         raise ArgumentError, "invalid URL (#{url})" unless url.kind_of? String and url =~ /^https?:\/\/.+/
         @url = url
         @session = nil
         @running = false
+        @timeout = 120
       end
 
       def push(type, data)
@@ -49,7 +51,7 @@ module Sinatra
         Thread.new do
           while @running do
             begin
-              res = HTTParty.get "#{@url}?session=#{@session}", :timeout => 120
+              res = HTTParty.get "#{@url}?session=#{@session}", :timeout => @timeout
               unless res.code == 200
                 self.emit :error, "CometIO get error"
                 sleep 10
