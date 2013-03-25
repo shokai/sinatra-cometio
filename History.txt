@@ -1,3 +1,7 @@
+=== 0.4.2 2013-03-26
+
+* refactor Sinatra::CometIO::push
+
 === 0.4.1 2013-03-24
 
 * Sinatra::CometIO::Client#timeout = 120
