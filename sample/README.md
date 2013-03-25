@@ -8,7 +8,7 @@ Comet Chat
 Install Dependencies
 --------------------
 
-    % gem install bundler foreman
+    % gem install bundler
     % bundle install
 
 
