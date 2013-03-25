@@ -22,7 +22,7 @@ class TestCometio < MiniTest::Unit::TestCase
       push :broadcast, post_data
     end
 
-    30.times do
+    50.times do
       break if res != nil
       sleep 0.1
     end
@@ -56,7 +56,7 @@ class TestCometio < MiniTest::Unit::TestCase
       end
     end
 
-    30.times do
+    50.times do
       break if res != nil
       sleep 0.1
     end
@@ -89,7 +89,7 @@ class TestCometio < MiniTest::Unit::TestCase
       end
     end
 
-    30.times do
+    50.times do
       break if res != nil
       sleep 0.1
     end
