@@ -1,3 +1,7 @@
+=== 0.4.3 2013-03-26
+
+* bugfix Sinatra::CometIO::push
+
 === 0.4.2 2013-03-26
 
 * refactor Sinatra::CometIO::push
