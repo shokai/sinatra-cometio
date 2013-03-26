@@ -27,7 +27,8 @@ module Sinatra
     end
 
     def self.push(type, data, opt={})
-      if opt.include? :to and self.sessions.include? opt[:to]
+      if opt.include? :to
+        return unless self.sessions.include? opt[:to]
         s = self.sessions[opt[:to]]
         if s[:queue].empty? and s[:stream] != nil
           begin
@@ -41,10 +42,10 @@ module Sinatra
         else
           s[:queue].push :type => type, :data => data
         end
-      else
-        self.sessions.keys.each do |id|
-          push type, data, :to => id
-        end
+        return
+      end
+      self.sessions.keys.each do |id|
+        push type, data, :to => id
       end
     end
 
