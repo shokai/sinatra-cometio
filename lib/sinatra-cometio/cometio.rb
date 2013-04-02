@@ -39,6 +39,7 @@ module Sinatra
             s[:stream].close
             s[:queue].push :type => type, :data => data
           end
+          s[:stream] = nil
         else
           s[:queue].push :type => type, :data => data
         end
