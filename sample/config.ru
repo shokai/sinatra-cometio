@@ -14,6 +14,6 @@ require 'sass'
 require File.dirname(__FILE__)+'/main'
 
 set :haml, :escape_html => true
-set :cometio, :timeout => 60
+set :cometio, :timeout => 60, :post_interval => 2
 
 run ChatApp
