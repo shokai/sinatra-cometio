@@ -43,14 +43,17 @@ module Sinatra
       app.post '/cometio/io' do
         from = params[:session]
         halt 400, 'no session' if from.empty?
-        type = params[:type]
-        data = params[:data]
+        events = params[:events]
+        halt 400, 'no data' unless events.kind_of? Hash
         EM::defer do
-          CometIO.emit type, data, from unless type.to_s.empty?
+          events.values.each do |e|
+            next if !e['type'] or e['type'].empty?
+            CometIO.emit e['type'], e['data'], from
+          end
         end
         stream :keep_open do |s|
           begin
-            s.write({:session => from, :type => type, :data => data}.to_json)
+            s.write({:session => from, :success => true}.to_json)
             s.flush
             s.close
           rescue
