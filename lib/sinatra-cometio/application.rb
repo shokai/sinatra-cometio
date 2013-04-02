@@ -44,9 +44,10 @@ module Sinatra
         from = params[:session]
         halt 400, 'no session' if from.empty?
         events = params[:events]
-        halt 400, 'no data' unless events.kind_of? Hash
+        halt 400, 'no data' unless [Hash, Array].include? events.class
+        events = events.keys.sort.map{|i| events[i] } if events.kind_of? Hash
         EM::defer do
-          events.values.each do |e|
+          events.each do |e|
             next if !e['type'] or e['type'].empty?
             CometIO.emit e['type'], e['data'], from
           end

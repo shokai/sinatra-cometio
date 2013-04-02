@@ -22,8 +22,12 @@ module Sinatra
       end
 
       def push(type, data)
+        post_data = {
+          :session => @session,
+          :events => [{:type => type, :data => data}]
+        }
         begin
-          res = HTTParty.post @url, :timeout => 10, :body => {:type => type, :data => data, :session => @session}
+          res = HTTParty.post @url, :timeout => 10, :body => post_data
           emit :error, "CometIO push error" unless res.code == 200
         rescue StandardError, Timeout::Error => e
           emit :error, "CometIO push error"
