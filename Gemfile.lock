@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    sinatra-cometio (0.4.3)
-      event_emitter (>= 0.2.4)
+    sinatra-cometio (0.4.4)
+      event_emitter (>= 0.2.5)
       eventmachine (>= 1.0.0)
       httparty (>= 0.10.2)
       json (>= 1.7.0)
