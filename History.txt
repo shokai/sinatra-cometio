@@ -1,3 +1,7 @@
+=== 0.5.4 2013-04-05
+
+* bugfix javascript
+
 === 0.5.3 2013-04-03
 
 * bugfix setting

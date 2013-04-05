@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sinatra-cometio (0.5.3)
+    sinatra-cometio (0.5.4)
       event_emitter (>= 0.2.5)
       eventmachine (>= 1.0.0)
       httparty (>= 0.10.2)
@@ -12,7 +12,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    backports (3.2.0)
+    backports (3.3.0)
     daemons (1.1.9)
     event_emitter (0.2.5)
     eventmachine (1.0.3)
