@@ -41,9 +41,10 @@ module Sinatra
       end
 
       app.post '/cometio/io' do
-        from = params[:session]
+        data = JSON.parse params[:json] rescue halt 500, 'JSON parse error'
+        from = data['session']
         halt 400, 'no session' if !from or from.empty?
-        events = params[:events]
+        events = data['events']
         halt 400, 'no data' unless [Hash, Array].include? events.class
         events = events.keys.sort.map{|i| events[i] } if events.kind_of? Hash
         EM::defer do

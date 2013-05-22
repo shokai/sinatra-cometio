@@ -23,8 +23,10 @@ module Sinatra
 
       def push(type, data)
         post_data = {
-          :session => @session,
-          :events => [{:type => type, :data => data}]
+          :json => {
+            :session => @session,
+            :events => [{:type => type, :data => data}]
+          }.to_json
         }
         begin
           res = HTTParty.post @url, :timeout => 10, :body => post_data
