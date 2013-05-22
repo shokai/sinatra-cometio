@@ -1,6 +1,6 @@
 require File.expand_path 'test_helper', File.dirname(__FILE__)
 
-class TestCometio < MiniTest::Unit::TestCase
+class TestCometio < MiniTest::Test
 
   def setup
     App.start
