@@ -28,5 +28,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'eventmachine', '>= 1.0.0'
   gem.add_dependency 'json', '>= 1.7.0'
   gem.add_dependency 'event_emitter', '>= 0.2.5'
-  gem.add_dependency 'httparty', '>= 0.10.2'
+  gem.add_dependency 'httparty'
 end

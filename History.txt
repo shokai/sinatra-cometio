@@ -1,3 +1,7 @@
+=== 0.5.5 2013-05-23
+
+* bugfix server side
+
 === 0.5.4 2013-04-05
 
 * bugfix javascript
