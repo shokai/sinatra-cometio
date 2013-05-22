@@ -42,7 +42,7 @@ module Sinatra
 
       app.post '/cometio/io' do
         from = params[:session]
-        halt 400, 'no session' if from.empty?
+        halt 400, 'no session' if !from or from.empty?
         events = params[:events]
         halt 400, 'no data' unless [Hash, Array].include? events.class
         events = events.keys.sort.map{|i| events[i] } if events.kind_of? Hash
