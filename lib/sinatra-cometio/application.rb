@@ -43,7 +43,7 @@ module Sinatra
 
       app.post '/cometio/io' do
         response["Access-Control-Allow-Origin"] = "*" if CometIO.options[:allow_crossdomain]
-        data = JSON.parse params[:json] rescue halt 500, 'JSON parse error'
+        data = ::JSON.parse params[:json] rescue halt 500, 'JSON parse error'
         from = data['session']
         halt 400, 'no session' if !from or from.empty?
         events = data['events']
