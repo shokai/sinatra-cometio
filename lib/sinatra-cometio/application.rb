@@ -11,6 +11,7 @@ module Sinatra
       end
 
       app.get '/cometio/io' do
+        response["Access-Control-Allow-Origin"] = "*" if CometIO.options[:allow_crossdomain]
         stream :keep_open do |s|
           session = params[:session].to_s.empty? ? CometIO.create_session(request.ip) : params[:session]
           CometIO.sessions[session][:stream] = s
@@ -41,6 +42,7 @@ module Sinatra
       end
 
       app.post '/cometio/io' do
+        response["Access-Control-Allow-Origin"] = "*" if CometIO.options[:allow_crossdomain]
         data = JSON.parse params[:json] rescue halt 500, 'JSON parse error'
         from = data['session']
         halt 400, 'no session' if !from or from.empty?

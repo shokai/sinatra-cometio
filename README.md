@@ -30,7 +30,7 @@ Server Side
 ```ruby
 require 'sinatra'
 require 'sinatra/cometio'
-set :cometio, :timeout => 120, :post_interval => 1
+set :cometio, :timeout => 120, :post_interval => 1, :allow_crossdomain => false
 
 run Sinatra::Application
 ```

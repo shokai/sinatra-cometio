@@ -12,7 +12,8 @@ module Sinatra
     def self.default_options
       {
         :timeout => [120, lambda{|v| v.kind_of? Fixnum and v >= 20 }],
-        :post_interval => [1, lambda{|v| [Fixnum, Float].include? v.class and v >= 1 }]
+        :post_interval => [1, lambda{|v| [Fixnum, Float].include? v.class and v >= 1 }],
+        :allow_crossdomain => [false, lambda{|v| [true, false].include? v }]
       }
     end
 
