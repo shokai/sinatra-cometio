@@ -1,3 +1,9 @@
+=== 0.5.7 2013-05-27
+
+* bugfix JSON parse error at classic style
+* set :cometio, :allow_crossdomain => true
+* add constructor arguments in JS lib
+
 === 0.5.6 2013-05-23
 
 * post with JSON for nested Array
