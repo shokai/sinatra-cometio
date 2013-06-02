@@ -1,3 +1,7 @@
+=== 0.5.8 2013-06-03
+
+* bugfix comet get error on IE
+
 === 0.5.7 2013-05-27
 
 * bugfix JSON parse error at classic style
