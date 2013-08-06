@@ -15,7 +15,7 @@ Install Dependencies
 Run
 ---
 
-    % rackup config.ru -p 5000
+    % bundle exec rackup config.ru -p 5000
 
 => http://localhost:5000
 
@@ -23,4 +23,4 @@ Run
 CUI Client
 ----------
 
-    % ruby bin/cui_chat_client.rb
+    % bundle exec ruby bin/cui_chat_client.rb

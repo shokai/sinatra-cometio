@@ -1,5 +1,4 @@
 require 'rubygems'
-require 'bundler/setup'
 $:.unshift File.expand_path '../../lib', File.dirname(__FILE__)
 require 'sinatra/cometio/client'
 
