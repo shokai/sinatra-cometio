@@ -14,6 +14,7 @@ module Sinatra
         response["Access-Control-Allow-Origin"] = "*" if CometIO.options[:allow_crossdomain]
         stream :keep_open do |s|
           session = params[:session].to_s.empty? ? CometIO.create_session(request.ip) : params[:session]
+          CometIO.sessions[session][:remote_addr] = request.env['REMOTE_ADDR']
           CometIO.sessions[session][:stream] = s
           CometIO.sessions[session][:last] = Time.now
           CometIO.emit :connect, session if params[:session].to_s.empty?
