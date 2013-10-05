@@ -10,6 +10,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Comet component for Sinatra RocketIO}
   gem.summary       = gem.description
   gem.homepage      = "https://github.com/shokai/sinatra-cometio"
+  gem.license       = "MIT"
 
   gem.files         = `git ls-files`.split($/).reject{|i| i=="Gemfile.lock" }
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
