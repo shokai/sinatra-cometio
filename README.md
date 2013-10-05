@@ -158,8 +158,13 @@ Test
 
     % gem install bundler
     % bundle install
-    % export PORT=5000
-    % export PID_FILE=/tmp/sinatra-cometio-test.pid
+
+start server
+
+    % rake test_server
+
+run test
+
     % rake test
 
 
